@@ -1,10 +1,13 @@
-import logo from "./logo.svg";
-import "./App.css";
+// React
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 // Pages and components
 import { AttempQuiz } from "./pages/AttempQuiz/AttempQuiz";
+import { EditQuiz } from "./pages/EditQuiz/EditQuiz";
+import { MainPage } from "./pages/MainPage/MainPage";
 
 // Firebase
+/*
 import { app, database } from "./firebaseConfig";
 import {
   collection,
@@ -18,16 +21,16 @@ import {
 
 const collectionRef = collection(database, "quizzes");
 
-/*
-addDoc(collectionRef, {
-  title: "Basi di dati",
-  version: 0
-}).then(() => {
-  console.log("data added")
-}).catch((e) => {
-  console.log("Something went wrong: " + e)
-})
-*/
+const addData = () => {
+  addDoc(collectionRef, {
+    title: "Basi di dati",
+    version: 0
+  }).then(() => {
+    console.log("data added")
+  }).catch((e) => {
+    console.log("Something went wrong: " + e)
+  })
+}
 
 const getData = () => {
   onSnapshot(collectionRef, (data) => {
@@ -48,13 +51,18 @@ const updateData = () => {
     console.log("Doc updated");
   });
 };
+*/
 
 // App
 function App() {
   return (
-    <>
-      <AttempQuiz />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/attemp-quiz/" element={<AttempQuiz />} />
+        <Route path="/edit-quiz/" element={<EditQuiz />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
